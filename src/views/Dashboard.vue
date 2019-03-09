@@ -28,23 +28,23 @@
 
       </v-layout>
 
-      <v-card flat v-for="project in projects" :key="project.title">
-        <v-layout row wrap :class="`pa-3 project ${project.status}`">
+      <v-card flat v-for="project in projects" :key="project.id">
+        <v-layout row wrap :class="`pa-3 project ${project.project_status}`">
           <v-flex xs12 md6 >
             <div class="caption grey--text">Project title</div>
-            <div>{{ project.title }}</div>
+            <div>{{ project.name }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Person</div>
-            <div>{{ project.person }}</div>
+            <div>{{ project.leader }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Due by</div>
-            <div>{{ project.due }}</div>
+            <div>{{ project.due_date }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="right">
-              <v-chip small :class="`${project.status} white--text caption my-2`">{{ project.status }}</v-chip>
+              <v-chip small :class="`${project.project_status} white--text caption my-2`">{{ project.project_status }}</v-chip>
             </div>
           </v-flex>
         </v-layout>
@@ -57,16 +57,23 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 
 export default {
+  mounted(){
+    axios.get('http://192.168.0.9:8000/projects/projects/').then( (respuesta) => {
+      this.projects=respuesta.data
+    },
+    
+    )
+  },
   data() {
     return {
       projects:[
-        {title: 'Auditoría de Ventas, Ingresos', person:'Jose Roberto', due:'2019.03.20', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.' },
-        {title: 'Auditoría de Ventas, Ingresos Carga', person:'Carolina Delgado', due:'2019.03.25', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
-        {title: 'Auditoría de Planificación de Inventarios', person:'Luz Dary Puerto', due:'2019.04.01', status:'completed', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
-        {title: 'Auditoría de flota O6', person:'Jhon Caballero', due:'2019.02.31', status:'overdue', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'}
+        // {title: 'Auditoría de Ventas, Ingresos', person:'Jose Roberto', due:'2019.03.20', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.' },
+        // {title: 'Auditoría de Ventas, Ingresos Carga', person:'Carolina Delgado', due:'2019.03.25', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
+        // {title: 'Auditoría de Planificación de Inventarios', person:'Luz Dary Puerto', due:'2019.04.01', status:'completed', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
+        // {title: 'Auditoría de flota O6', person:'Jhon Caballero', due:'2019.02.31', status:'overdue', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'}
       ]
       
     }
