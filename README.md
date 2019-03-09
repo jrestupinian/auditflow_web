@@ -27,3 +27,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### install aditional modules
+npm install -g @vue/cli
+npm install vuetify
+npm install date-fns
+npm install axios
