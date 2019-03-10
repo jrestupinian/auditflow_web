@@ -61,13 +61,6 @@ import axios from 'axios'
 
 export default {
   mounted(){
-    // function getProjects(){
-    //   return axios.get('http://192.168.0.9:8000/projects/projects/')
-    // }
-    // function getLeader(){
-    //   return axios.get('')
-
-    // }
     axios.get('http://192.168.0.9:8000/projects/projects/').then( (res) => {
       this.projects=res.data
     })
@@ -75,9 +68,7 @@ export default {
   data() {
     return {
       projects:[
-      ],
-      leader:[]
-      
+      ]
     }
   },
   methods:{
