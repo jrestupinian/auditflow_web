@@ -36,7 +36,7 @@
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Person</div>
-            <div>{{ project.leader }}</div>
+            <div>{{ project.leader.name }}</div>
           </v-flex>
           <v-flex xs6 sm4 md2>
             <div class="caption grey--text">Due by</div>
@@ -61,20 +61,22 @@ import axios from 'axios'
 
 export default {
   mounted(){
-    axios.get('http://192.168.0.9:8000/projects/projects/').then( (respuesta) => {
-      this.projects=respuesta.data
-    },
-    
-    )
+    // function getProjects(){
+    //   return axios.get('http://192.168.0.9:8000/projects/projects/')
+    // }
+    // function getLeader(){
+    //   return axios.get('')
+
+    // }
+    axios.get('http://192.168.0.9:8000/projects/projects/').then( (res) => {
+      this.projects=res.data
+    })
   },
   data() {
     return {
       projects:[
-        // {title: 'Auditoría de Ventas, Ingresos', person:'Jose Roberto', due:'2019.03.20', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.' },
-        // {title: 'Auditoría de Ventas, Ingresos Carga', person:'Carolina Delgado', due:'2019.03.25', status:'ongoing', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
-        // {title: 'Auditoría de Planificación de Inventarios', person:'Luz Dary Puerto', due:'2019.04.01', status:'completed', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'},
-        // {title: 'Auditoría de flota O6', person:'Jhon Caballero', due:'2019.02.31', status:'overdue', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi praesentium, commodi reiciendis repudiandae nisi, iste distinctio doloremque sint quis voluptatum maiores fugit provident? Harum beatae ad, est vero iste nostrum.'}
-      ]
+      ],
+      leader:[]
       
     }
   },
@@ -87,25 +89,76 @@ export default {
 </script>
 
 <style>
-.project.completed {
-  border-left: 4px solid #3cd1c2;
+.project.Idea {
+  border-left: 4px solid khaki;
 }
-.project.ongoing {
-  border-left: 4px solid orange;
+.project.Requested {
+  border-left: 4px solid khaki;
 }
-.project.overdue {
-  border-left: 4px solid tomato;
+.project.Approved {
+  border-left: 4px solid cadetblue;
+}
+.project.Rejected {
+  border-left: 4px solid grey;
+}
+.project.Planning {
+  border-left: 4px solid blue;
+}
+.project.Ongoing {
+  border-left: 4px solid darkgreen;
+}
+.project.Dead {
+  border-left: 4px solid black;
+}
+.project.On_hold {
+  border-left: 4px solid darkorange;
 }
 
-.v-chip.completed{
-  background: #3cd1c2;
+.project.Complete {
+  border-left: 4px solid darkgray;
+}
+.project.Overdue {
+  border-left: 4px solid darkred;
 }
 
-.v-chip.ongoing{
-  background: orange;
+.v-chip.Idea{
+  background: khaki;
 }
 
-.v-chip.overdue{
-  background: tomato;
+.v-chip.Requested{
+  background: khaki;
 }
+
+.v-chip.Approved{
+  background: cadetblue;
+}
+
+.v-chip.Rejected{
+  background: grey;
+}
+
+.v-chip.Planning{
+  background: blue;
+}
+
+.v-chip.Ongoing{
+  background: darkgreen;
+}
+
+.v-chip.Dead{
+  background: black;
+}
+
+.v-chip.On_hold{
+  background: darkorange;
+}
+
+.v-chip.Complete{
+  background: darkgray;
+}
+
+.v-chip.Overdue{
+  background: darkred;
+}
+
 </style>
