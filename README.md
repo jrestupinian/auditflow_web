@@ -45,5 +45,5 @@ $ vue add vuetify
 
 ### install aditional dependencies
 npm install date-fns
-npm install axiosa
-vue router
+npm install --save axios
+vue add router
