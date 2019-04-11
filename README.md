@@ -29,8 +29,16 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### plugins require
-@vue/clie 3
-vuetify
+@vue/clie 3:
+npm install -g @vue/cli
+vue create my-project
+# OR
+vue ui
+
+Now vuetify:
+$ vue create my-app
+$ cd my-app
+$ vue add vuetify
 
 ### install aditional dependencies
 npm install date-fns
